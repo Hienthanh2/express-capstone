@@ -1,7 +1,9 @@
 import {
   BadRequestException,
+  forwardRef,
   HttpException,
   HttpStatus,
+  Inject,
   Injectable,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
@@ -15,6 +17,7 @@ import { LoginDto } from './dto/login.dto';
 @Injectable()
 export class AuthService {
   constructor(
+    @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
@@ -74,5 +77,11 @@ export class AuthService {
       password: user.password,
     };
     return { access_token: this.jwtService.sign(payload) };
+  }
+
+  async parsePayloadFromToken(token: string): Promise<AuthPayload> {
+    const payload = await this.jwtService.decode(token);
+
+    return payload;
   }
 }

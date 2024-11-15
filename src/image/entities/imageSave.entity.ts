@@ -18,7 +18,7 @@ export class ImageSave {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @ManyToOne(() => Image, (image) => image.imageSaves)
+  @ManyToOne(() => Image, (image) => image.imageSaves, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'image_id' })
   image: Image;
 

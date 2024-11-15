@@ -3,14 +3,13 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Query,
+  Headers,
 } from '@nestjs/common';
 import { ImageService } from './image.service';
 import { CreateImageDto } from './dto/create-image.dto';
-import { UpdateImageDto } from './dto/update-image.dto';
 import { GetImagesDto } from './dto/get-images.dto';
 import { GetImagesByNameDto } from './dto/get-images-by-name.dto';
 
@@ -39,13 +38,21 @@ export class ImageController {
     return this.imageService.findUserAndImageInfoById(+imageId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateImageDto: UpdateImageDto) {
-    return this.imageService.update(+id, updateImageDto);
+  @Get('/get-image-comments/:id')
+  findImageComments(@Param('id') imageId: string) {
+    return this.imageService.findImageComments(+imageId);
+  }
+
+  @Get('/is-save-image/:id')
+  checkIsSaveImage(
+    @Headers('token') token: string,
+    @Param('id') imageId: string,
+  ) {
+    return this.imageService.checkIsSaveImage(token, +imageId);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.imageService.remove(+id);
+  remove(@Headers('token') token: string, @Param('id') id: string) {
+    return this.imageService.remove(+id, token);
   }
 }

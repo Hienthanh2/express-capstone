@@ -19,7 +19,7 @@ export class Comment {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @ManyToOne(() => Image, (image) => image.comments)
+  @ManyToOne(() => Image, (image) => image.comments, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'image_id' })
   image: Image;
 
