@@ -1,0 +1,488 @@
+{
+	"info": {
+		"_postman_id": "1f576dcd-8206-4329-bbab-f58b250d59c8",
+		"name": "Captone Express ORM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16090263"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"hien@test4.com\",\n    \"password\": \"123456\",\n    \"username\": \"hienthanh_123\",\n    \"age\": 123,\n    \"avatar_url\": \"http://testAvatar.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "hehe",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"hien@test4.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Home Page",
+			"item": [
+				{
+					"name": "Get All Images",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/image?page=1&size=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"image"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Images By Name",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/image/get-images-by-name?page=1&size=6&keyword=Image 3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"image",
+								"get-images-by-name"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "6"
+								},
+								{
+									"key": "keyword",
+									"value": "Image 3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Detail Page",
+			"item": [
+				{
+					"name": "Get User and Image Info By Image Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/image/get-info-by-image-id/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"image",
+								"get-info-by-image-id",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Image Comments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/image/get-image-comments/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"image",
+								"get-image-comments",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Image Is Saved",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/image/is-save-image/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"image",
+								"is-save-image",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"imageId\": 20,\n    \"content\": \"hello cac ban tu hien 4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/comment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image Management Page",
+			"item": [
+				{
+					"name": "Get User Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Saved Images By User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/created-images",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"created-images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Image Created By User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/Image/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Image",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Personal Page",
+			"item": [
+				{
+					"name": "Update User Info",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"123\",\n    \"age\": 23,\n    \"username\": \"hienthanh123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add Image Page",
+			"item": [
+				{
+					"name": "Add New Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpZW5AdGVzdDQuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkaTdld3V5QjhMbzVtQWY1Li9zeEl1T3h1T0ptTkkxRkZFTjQ2RTB0QlFNa2o4d2dIcUJHM0siLCJpYXQiOjE3MzE2ODE1MTIsImV4cCI6MTczMTc2NzkxMn0.KxQX3G7QMO-_Y-B9Ce1kOHApzU7By79PBp0PoOwfHiY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image_name\": \"image 21\",\n    \"image_url\": \"http://imageUrl.com\",\n    \"image_description\": \"this is an description for image\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"image"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

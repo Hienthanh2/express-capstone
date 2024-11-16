@@ -20,10 +20,10 @@ export class Image {
   @Column({ type: 'varchar' })
   image_name: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'varchar', length: 1000 })
   image_url: string;
 
-  @Column({ type: 'varchar', length: 1000 })
+  @Column({ type: 'text', nullable: true })
   image_description: string;
 
   @ManyToOne(() => User, (user) => user.images_created)

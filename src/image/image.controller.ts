@@ -18,8 +18,11 @@ export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
   @Post()
-  create(@Body() createImageDto: CreateImageDto) {
-    return this.imageService.create(createImageDto);
+  create(
+    @Headers('token') token: string,
+    @Body() createImageDto: CreateImageDto,
+  ) {
+    return this.imageService.create(createImageDto, token);
   }
 
   @Get()

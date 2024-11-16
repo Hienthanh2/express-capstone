@@ -29,8 +29,19 @@ export class ImageService {
     private readonly authService: AuthService,
   ) {}
 
-  create(createImageDto: CreateImageDto) {
-    return 'This action adds a new image';
+  async create(createImageDto: CreateImageDto, token: string) {
+    // Check user
+    const { email } = await this.authService.parsePayloadFromToken(token);
+    const userFound = await this.userService.findOneByEmail(email);
+
+    if (!userFound) {
+      throw new BadRequestException('User not found');
+    }
+
+    const imageToSave = this.imageRepository.create(createImageDto);
+    imageToSave.user = userFound;
+
+    return await this.imageRepository.save(imageToSave);
   }
 
   async findAll({ page, size }: GetImagesDto) {

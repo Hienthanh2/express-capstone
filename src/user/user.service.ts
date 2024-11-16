@@ -1,4 +1,9 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  forwardRef,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -8,6 +13,7 @@ import { plainToClass } from 'class-transformer';
 import { UserDto } from './dto/user.dto';
 import { ImageSave } from 'src/image/entities/imageSave.entity';
 import { ImageService } from 'src/image/image.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -65,5 +71,25 @@ export class UserService {
     const images = await this.imageService.findImagesByUserId(user.id);
 
     return images;
+  }
+
+  async updateUser(token: string, updateUserDto: UpdateUserDto) {
+    // Check user
+    const { email } = await this.authService.parsePayloadFromToken(token);
+
+    const user = await this.findOneByEmail(email);
+
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    const hashedPassword = await this.authService.hashPassword(user.password);
+
+    // Update user info
+    return await this.userRepository.save({
+      ...user,
+      ...updateUserDto,
+      password: hashedPassword,
+    });
   }
 }
